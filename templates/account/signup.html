@@ -1,0 +1,174 @@
+{% load socialaccount %}
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sign Up</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="CodedThemes">
+
+    <link rel="icon" href="{% static 'images/check.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" id="main-font-link">
+    <link rel="stylesheet" href="{% static 'fonts/tabler-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/feather.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/material.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" id="main-style-link">
+    <link rel="stylesheet" href="{% static 'css/style-preset.css' %}">
+
+    <style>
+        body {
+            background-color: #facae4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .auth-main {
+            width: 100%;
+            max-width: 450px; /* Slightly wider for signup */
+            padding: 20px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.023);
+            background-color: #ffffff;
+        }
+
+        .card-body {
+            padding: 2.5rem;
+        }
+
+        .btn-primary {
+            background-color: #0a3cb0;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 0;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background-color: #1b3b84;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .btn-light-primary {
+            border-radius: 8px;
+            font-weight: 500;
+            border: 1px solid #848383;
+        }
+
+        .btn-light-primary img {
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        .saprator {
+            text-align: center;
+            margin: 1.5rem 0 0.5rem;
+            font-size: 14px;
+            color: #888;
+        }
+
+        a.link-primary {
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+
+        a.link-primary:hover {
+            text-decoration: underline;
+        }
+        
+        .errorlist {
+            color: #dc3545;
+            list-style: none;
+            padding: 0;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-main">
+        <div class="card">
+            <div class="card-body">
+                <div class="logo text-center mb-4">
+                    <img src="{% static 'images/todo-logo.png' %}" alt="logo" style="max-height:50px;">
+                    <h4 class="mt-2">Create an Account</h4>
+                </div>
+                <form method="post" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        {% for field in form.visible_fields %}
+                        <div class="col-12 mb-3">
+                            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} *{% endif %}</label>
+                            {{ field|add_class:"form-control" }}
+                            {% if field.help_text %}
+                            <small class="text-muted d-block">{{ field.help_text }}</small>
+                            {% endif %}
+                            {% if field.errors %}
+                            <div class="errorlist">
+                                {{ field.errors }}
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+
+                        <div class="form-check mt-3">
+                            <input class="form-check-input input-primary" type="checkbox" id="terms" required>
+                            <label class="form-check-label text-muted" for="terms">
+                                I agree to the <a href="#" class="link-primary">Terms & Conditions</a>
+                            </label>
+                        </div>
+
+                        {% if form.non_field_errors %}
+                        <div class="alert alert-danger mt-3" role="alert">
+                            {% for error in form.non_field_errors %}
+                            <p {% if forloop.last %} class="mb-0" {% endif %}>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary">Create Account</button>
+                        </div>
+
+                        <p class="text-center mt-3">Already have an account? <a href="{% url 'account_login' %}" class="link-primary">Log in</a></p>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/plugins/popper.min.js' %}"></script>
+    <script src="{% static 'js/plugins/simplebar.min.js' %}"></script>
+    <script src="{% static 'js/plugins/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/fonts/custom-font.js' %}"></script>
+    <script src="{% static 'js/pcoded.js' %}"></script>
+    <script src="{% static 'js/plugins/feather.min.js' %}"></script>
+
+    <script>
+        layout_change('light');
+        change_box_container('false');
+        layout_rtl_change('false');
+        preset_change("preset-1");
+        font_change("Lato");
+    </script>
+</body>
+
+</html>
