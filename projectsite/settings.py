@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'task_manager',
     'widget_tweaks',
+    'pwa',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -167,3 +168,35 @@ if DEBUG:
 else:
     # Production email settings should be configured with a real SMTP server
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+PWA_APP_NAME = 'ProjectSite'
+PWA_APP_DESCRIPTION = "A Progressive Web App version of ProjectSite"
+PWA_APP_THEME_COLOR = '#0A0A0A'
+PWA_APP_BACKGROUND_COLOR = '#FFFFFF'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'portrait'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_ICONS = [
+    {
+        'src': '/static/images/img-navbar-card.png',
+        'sizes': '180x124'
+    },
+    {
+        'src': '/static/images/img-navbar-card.png',
+        'sizes': '180x124'
+    }
+]
+PWA_APP_ICONS_APPLE = [
+    {
+        'src': '/static/images/img-navbar-card.png',
+        'sizes': '180x124'
+    },
+    {
+        'src': '/static/images/img-navbar-card.png',
+        'sizes': '180x124'
+    }
+]
+PWA_APP_DIR = 'ltr'
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
