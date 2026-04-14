@@ -24,6 +24,7 @@ from task_manager.views import NoteList, NoteCreateView, NoteUpdateView, NoteDel
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('pwa.urls')),
     path('accounts/', include('allauth.urls')),  # Single allauth include (handles auth)
     path('', HomePageView.as_view(), name='home'),  # Home view
     path('task_list/', TaskList.as_view(), name='task-list'),
