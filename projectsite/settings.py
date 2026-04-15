@@ -181,21 +181,21 @@ PWA_APP_STATUS_BAR_COLOR = 'default'
 PWA_APP_ICONS = [
     {
         'src': '/static/images/img-navbar-card.png',
-        'sizes': '180x124'
+        'sizes': '192x192'
     },
     {
         'src': '/static/images/img-navbar-card.png',
-        'sizes': '180x124'
+        'sizes': '512x512'
     }
 ]
 PWA_APP_ICONS_APPLE = [
     {
         'src': '/static/images/img-navbar-card.png',
-        'sizes': '180x124'
+        'sizes': '192x192'
     },
     {
         'src': '/static/images/img-navbar-card.png',
-        'sizes': '180x124'
+        'sizes': '192x192'
     }
 ]
 PWA_APP_DIR = 'ltr'
